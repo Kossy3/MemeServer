@@ -103,6 +103,12 @@ app.post("/sess", async (req, res) => {
       console.log(
         `/sess AccessDenied cookies=${JSON.stringify(req.cookies)}\n  sess_id=${req.body.sess_id}`,
       );
+      res.cookie(KEY, "delete", {
+        maxAge: 1, // ミリ秒
+        httpOnly: true,
+        sameSite: "None",
+        secure: true,
+      });
       res.json({});
       return;
     }

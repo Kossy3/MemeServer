@@ -6,7 +6,7 @@ class DB {
         this.redis = new RedisDummy();
     }
 
-    get(key) {
+    get(key) { // 存在しない場合はfalse
         let json = this.redis.get(key);
         return JSON.parse(json);
     }
@@ -20,8 +20,13 @@ class DB {
 class RedisDummy {
     static data = {};
     get (key) {
-        console.log("get", key)
-        return RedisDummy.data[key];
+        console.log("get", key);
+        if (key in RedisDummy.data) {
+            return RedisDummy.data[key];
+        } else {
+            return null;
+        }
+        
     }
     set (key, value) {
         console.log("set", key, value)

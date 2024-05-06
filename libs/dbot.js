@@ -20,7 +20,7 @@ client.on("messageCreate", async (msg) => {
 });
 
 client.on("voiceStateUpdate", async (oldState, newState) => {
-  const singleUseChannelName = "使い捨てtest";
+  const singleUseChannelName = "使い捨て";
 
   // 使い捨て取得
   const getSingleUseChannel = (vc) => {

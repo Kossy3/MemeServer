@@ -70,6 +70,9 @@ client.on("voiceStateUpdate", async (oldState, newState) => {
   // 切断時
   if (!newState.channel || (oldState.channel && oldState.channel != newState.channel)) {
     const such = getSingleUseChannel(oldState.channel);
+    if (!such) {
+      return;
+    }
     if (oldState.channel.members.size > 0) {
       such.permissionOverwrites.edit(oldState.member, { ViewChannel: false });
     } else {
